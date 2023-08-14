@@ -1,0 +1,38 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>Weather App</mat-card-title>
+    <mat-card-subtitle>Find the weather in any country!</mat-card-subtitle>
+  </mat-card-header>
+
+  <img matCardImage src="https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png"
+  width="300px">
+
+  <mat-card-actions align="start">
+    <form (ngSubmit)="getWeather(city)">
+
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <input matInput name="city" [(ngModel)]="city">
+      </mat-form-field>
+
+      <button mat-raised-button type="submit">Get</button>
+    </form>
+  </mat-card-actions>
+
+  <mat-card-content *ngIf="weather !== undefined">
+
+      <h1>Weather in {{ city }}</h1>
+
+      <p>City: {{ weather.city }}</p>
+      <p>Description: {{ weather.description }}</p>
+      <p>Temperature: {{ weather.temp | number: '1.0-0' }}°C</p>
+      <!-- at least 1 digit before decimal, 0 digits after decimal -->
+      <p>Date: {{ weather.date | date: "d MMM yy, h:mm a"}}</p>
+  </mat-card-content>
+
+  <mat-card-footer>
+    Information is taken from <a href="http://openweathermap.org" target="_blank">openweathermap.org</a>
+  </mat-card-footer>
+
+</mat-card>
